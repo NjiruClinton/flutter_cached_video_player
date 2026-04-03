@@ -6,7 +6,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -16,14 +16,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         // This is the theme of your application.
         //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
+        // TRY THIS: Try running your application with "flutter run". You'll see
+        // the application has a purple toolbar. Then, without quitting the app,
+        // try changing the seedColor in the colorScheme below to Colors.green
+        // and then invoke "hot reload" (save your changes or press the "hot
+        // reload" button in a Flutter-supported IDE, or press "r" if you used
+        // the command line to start the app).
+        //
         // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        // state is not lost during the reload. To reset the state, use hot
+        // restart instead.
+        //
+        // This works for code too, not just values: Most code changes can be
+        // tested with just a hot reload.
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -53,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     controller = CachedVideoPlayerController.network(
-        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4");
+        "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4");
     controller.initialize().then((value) {
       controller.play();
       setState(() {});
@@ -78,8 +84,8 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
           child: controller.value.isInitialized
               ? AspectRatio(
-                  aspectRatio: controller.value.aspectRatio,
-                  child: CachedVideoPlayer(controller))
+              aspectRatio: controller.value.aspectRatio,
+              child: CachedVideoPlayer(controller))
               : const CircularProgressIndicator()), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
