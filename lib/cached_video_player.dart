@@ -347,6 +347,12 @@ class CachedVideoPlayerController
           break;
         case VideoEventType.unknown:
           break;
+        case VideoEventType.isPlayingStateUpdate:
+          // print("============= UnimplementedError event received ============");
+          if (event.isPlaying != null) {
+            value = value.copyWith(isPlaying: event.isPlaying!);
+          }
+          break;
       }
     }
 
